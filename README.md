@@ -11,12 +11,12 @@ Open 'creds.txt'<br>
 	- Do this for all of the sites listed<br>
 	- Save and exit<br>
 
-Run 'FreeFaucet.io_Register_Bot.exe'<br>
+Run 'dist\FreeFaucet.io_Register_Bot.exe' (or FreeFaucet.io_Register_Bot.py)<br>
 	- You only need to run this once<br>
 	- It will register the username and password provided in creds.txt for all 13 sites<br>
 	- You will need to click the verification links sent to your e-mail when it completes<br>
 
-Run 'FreeFaucet.io_Bot.exe'<br>
+Run 'dist\FreeFaucet.io_Bot.exe' (or FreeFaucet.io_Bot.py)<br>
 	- Make sure you have clicked the verification links for each site in your e-mail<br>
 	- Run the bot<br>
 	- You can minimize the bot while it runs<br>
