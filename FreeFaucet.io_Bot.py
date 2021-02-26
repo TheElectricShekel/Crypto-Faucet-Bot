@@ -3,6 +3,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
+from selenium.common.exceptions import UnexpectedAlertPresentException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import TimeoutException
 from io import BytesIO
 import time
 import keyboard
@@ -25,21 +29,33 @@ with open(credentials) as f:
     creds = f.readlines()
 time.sleep(1)
 
-# Create new Instance of Chrome
 browser = webdriver.Chrome(executable_path=driver_path, chrome_options=option)
 browser.maximize_window()
 print("Browser launched")
 
-#r = 1
-
 while True:
-    print("Navigating to Freedash.io")
+    print("Navigating to https://Freedash.io")
     browser.get("https://freedash.io/free")
+
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
+
+    try:
+        ad_close = browser.find_element_by_xpath("/html/body/div[1]/div")
+        ad_close.click()
+    except:
+        pass
 
     username = creds[9]
     password = creds[10]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -60,8 +76,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -72,13 +86,26 @@ while True:
 
 ####################################################################
 
-    print("Navigating to Freenem.io")
+    print("Navigating to https://Freenem.io")
+    #try:
+    #    browser.get("https://freenem.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
     browser.get("https://freenem.com/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[13]
     password = creds[14]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -99,8 +126,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -110,13 +135,26 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to Freecardano.com")
+    print("Navigating to https://Freecardano.com")
+    #try:
+    #    browser.get("https://Freecardano.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
     browser.get("https://Freecardano.com/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[17]
     password = creds[18]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -137,8 +175,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -148,13 +184,26 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to Coinfaucet.io")
+    print("Navigating to https://Coinfaucet.io")
+    #try:
+    #    browser.get("https://Coinfaucet.io/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
     browser.get("https://Coinfaucet.io/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[21]
     password = creds[22]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -175,8 +224,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -186,13 +233,27 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freebitcoin.io")
+    print("Navigating to https://freebitcoin.io")
+    #try:
+    #    browser.get("https://freebitcoin.io/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://freebitcoin.io/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[25]
     password = creds[26]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -213,8 +274,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -224,13 +283,27 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freesteam.io")
+    print("Navigating to https://freesteam.io")
+    #try:
+    #    browser.get("https://freesteam.io/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://freesteam.io/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[29]
     password = creds[30]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -251,8 +324,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -262,13 +333,27 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freeusdcoin.com")
-    browser.get("https://freeusdcoin.com/free")
+    print("Navigating to https://freeusdcoin.com")
+    #try:
+    #    browser.get("https://freeusdcoin.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
+    browser.get("https://freeusdcoin.com")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[33]
     password = creds[34]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -289,8 +374,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -300,13 +383,27 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freechainlink.io")
+    print("Navigating to https://freechainlink.io")
+    #try:
+    #    browser.get("https://freechainlink.io/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://freechainlink.io/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[37]
     password = creds[38]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -327,8 +424,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -338,8 +433,23 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to free-tron.com")
+    print("Navigating to https://free-tron.com")
+    #try:
+    #    browser.get("https://free-tron.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://free-tron.com/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[41]
     password = creds[42]
@@ -365,8 +475,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -376,8 +484,23 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freebinancecoin.com")
+    print("Navigating to https://freebinancecoin.com")
+    #try:
+    #    browser.get("https://freebinancecoin.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://freebinancecoin.com/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[45]
     password = creds[46]
@@ -403,8 +526,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -414,13 +535,28 @@ while True:
     time.sleep(10)
 ####################################################################
 
-    print("Navigating to freeneo.io")
+    print("Navigating to https://freeneo.io")
+    #try:
+    #    browser.get("https://freeneo.io/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+
     browser.get("https://freeneo.io/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        browser.refresh()
+        print("No bot alerts found")
 
     username = creds[49]
     password = creds[50]
 
-    #input("Press Enter to continue...")
     dash_un_field = browser.find_element_by_xpath("/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
     dash_un_field.send_keys(username)
@@ -441,20 +577,47 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
         print("Clicked roll button")
+        time.sleep(10)
     except ElementNotInteractableException:
         print("No roll button found")
     time.sleep(10)
 
+    browser.close()
+
 ####################################################################
 
-    print("Navigating to free-ltc.com")
-    browser.get("https://free-ltc.com/free")
+    browser = webdriver.Chrome(executable_path=driver_path, chrome_options=option)
+
+    print("Navigating to https://free-ltc.com")
+    #time.sleep(5)
+    #try:
+    #    browser.get("https://free-ltc.com/free")
+    #except UnexpectedAlertPresentException:
+    #    browser.refresh()
+    #browser.refresh()
+    time.sleep(5)
+    try:
+        browser.get("https://free-ltc.com/free")
+        time.sleep(5)
+        browser.refresh()
+        time.sleep(5)
+        print("Checking for bot alerts")
+    except:
+        browser.get("https://freeethereum.com/free")
+        time.sleep(5)
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[53]
     password = creds[54]
@@ -480,8 +643,6 @@ while True:
 
     time.sleep(5)
 
-    #browser.get("https://freedash.io/free")
-
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
         roll_button.click()
@@ -494,6 +655,16 @@ while True:
 
     print("Navigating to https://freeethereum.com/")
     browser.get("https://freeethereum.com/free")
+    print("Checking for bot alerts")
+    try:
+        WebDriverWait(browser, 3).until(expected_conditions.alert_is_present())
+
+        alert = browser.switch_to.alert
+        alert.accept()
+        print("Found bot alert, refreshing page")
+        browser.refresh()
+    except TimeoutException:
+        print("No bot alerts found")
 
     username = creds[57]
     password = creds[58]
@@ -520,8 +691,6 @@ while True:
     print("Clicked Login Button")
 
     time.sleep(5)
-
-    # browser.get("https://freedash.io/free")
 
     try:
         roll_button = browser.find_element_by_xpath("/html/body/main/div/div/div/div/div/div[5]/button")
