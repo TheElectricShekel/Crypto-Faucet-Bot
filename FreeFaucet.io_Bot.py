@@ -61,6 +61,14 @@ eth_skip = 0
 
 
 def login():
+    try:
+        print("Checking for ad overlay")
+        ad_check = browser.find_element_by_id("fbf-mobile-close-coinzilla")
+        ad_check.click()
+        print("Ads closed")
+    except NoSuchElementException:
+        print("No Ads found")
+
     dash_un_field = browser.find_element_by_xpath(
         "/html/body/main/section/section[1]/div/div/div[2]/div/div[1]/div[1]/input")
     dash_un_field.click()
